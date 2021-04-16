@@ -1,0 +1,86 @@
+body, html{
+    background: rgb(255,255,255);
+    background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(210,210,210,1) 90%);    
+    height: 100%;
+}
+
+.toolbar{
+    background-color: #5c1585;
+    height: 100px;
+    margin: 0;
+    padding: 0;
+}
+
+.toolbar-logo{
+    margin: 0;
+    margin-left: 5%;
+    padding: 0;
+    height: 80%;
+}
+
+.toolbar-date{
+    margin-top: 3%;
+    margin-right: 5%;
+    color: white;
+    font-family: Trajan Pro;
+    text-align: right;
+}
+
+.toolbar-hour{
+    margin-top: 1%;
+    color: white;
+}
+
+.card{
+    height: 30%;
+    margin-top: 15%;
+    margin-bottom: auto;
+    width: 30%;
+    background: transparent !important;
+    border: none !important;
+}
+
+.card-body{
+    background-color: #5c1585;
+    border-radius: 5%;
+}
+
+input, .form-control{
+    height: 40px;
+    margin-top: 20px;
+}
+
+.avatar-container{
+    border-color: #5c1585;
+    border-width: 3px !important;
+
+}
+
+.avatar{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: -75px;
+    padding: 0;
+    left: 32%;
+    border: solid;
+    border-width: 3px;
+    border-color: #5c1585;
+}
+
+.intput-user{
+    margin-top: 20%;
+}
+
+.form-group{
+    text-align: center;
+}
+
+.login_btn{
+    color: white !important;
+    background-color: #7926aa !important;
+    border-color: white !important;
+    width: 100px;
+    margin-top: 5%;
+    margin:auto;
+}
