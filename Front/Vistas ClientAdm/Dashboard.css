@@ -1,8 +1,18 @@
-
 body, html{
     background: rgb(255,255,255);
     background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(210,210,210,1) 90%);    
     height: 100%;
+}
+
+.row{
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.col-4, .col-8{
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .toolbar{
@@ -33,18 +43,31 @@ body, html{
 }
 
 .main-container{
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 .menu-container{
     background-color: #660066;
-    margin: 5%;
+    margin: 3% !important;
     padding: 0 !important;
+    width: 95% !important;
     height: 800px;
     text-align: center;
     box-shadow: 4px 4px 5px rgb(92, 92, 92);
 }
+
+.frame-container{
+    background-color: #660066;
+    margin: 3% !important;
+    padding: 0 !important;
+    width: 95% !important;
+    height: 800px;
+    text-align: center;
+    box-shadow: 4px 4px 5px rgb(92, 92, 92);
+}
+
 
 .avatar{
     width: 150px;
@@ -88,6 +111,7 @@ body, html{
 	border-width: 5px !important;
 	text-align: left !important; 
     width: 85%;
+    margin-bottom: 15px;
 }
 
 .spn-icnBtn{
@@ -99,6 +123,6 @@ body, html{
 	background-color: white !important;
 	border-width: 20px !important;
 	border-color: #660066 !important;
-    box-shadow: 0 0 25px white;
+    box-shadow: 0 0 15px white;
     text-shadow: 0 0 1px #660066;
 }
