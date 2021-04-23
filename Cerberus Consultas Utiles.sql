@@ -47,7 +47,7 @@ select
 	op.description as [Opcion],
 	od.quantity as [Cantidad], 
 	p.description as [Descripcion], 
-	p.price as [Precio Unitario], 
+	case when p.HasOptions=1 then op.Price else p.price end as [Precio Unitario], 
 	p.price * od.quantity as [Subtotal], 
 	o.CreateDate as [Fecha de Pedido], 
 	o.closeDate as [Fecha de Cierre]
