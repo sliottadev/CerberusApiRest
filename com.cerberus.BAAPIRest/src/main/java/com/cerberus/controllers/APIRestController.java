@@ -21,20 +21,20 @@ import com.cerberus.services.IUserService;
 public class APIRestController {
 
 	@Autowired
-	IUserService userController;
+	IUserService userService;
 	
 	@Autowired
-	IProductService productController;
+	IProductService productService;
 	
 	@Autowired
-	IMiscService miscController;
+	IMiscService miscService;
 	
 	@Autowired
 	Logger log;
 
 	@GetMapping("GetRoles")
 	public String GetRoles() {
-		List<Rol> Result = (List<Rol>) userController.GetRoles();
+		List<Rol> Result = (List<Rol>) userService.GetRoles();
 		if (Result != null) {
 			String json = GenericMapper.serialize(Result);
 			log.Write(LoggerType.LOG_AUDIT, json);
@@ -45,81 +45,81 @@ public class APIRestController {
 	
 	@GetMapping("GetUsers")
 	public String GetUsers() {
-		return userController.GetUsers().toString();
+		return userService.GetUsers().toString();
 	}
 	
 	@GetMapping("GetUserById/{id}")
 	public String GetUserById(@PathVariable Integer id) {
-		return userController.GetUserById(id).toString();
+		return userService.GetUserById(id).toString();
 	}
 	
 	@GetMapping("GetProducts")
 	public String GetProducts() {
-		return productController.GetProducts().toString();
+		return productService.GetProducts().toString();
 	}
 	
 	@GetMapping("GetProductById/{id}")
 	public String GetProductById(@PathVariable Integer id) {
-		return productController.GetProductById(id).toString();
+		return productService.GetProductById(id).toString();
 	}	
 	
 	@GetMapping("GetPermissions")
 	public String GetPermissions() {
-		return userController.GetPermissions().toString();
+		return userService.GetPermissions().toString();
 	}
 	
 	@GetMapping("GetPermissionById/{id}")
 	public String GetPermissionById(@PathVariable Integer id) {
-		return userController.GetPermissionById(id).toString();
+		return userService.GetPermissionById(id).toString();
 	}
 	
 	@GetMapping("GetProductsOptions")
 	public String GetProductsOptions() {
-		return productController.GetProductsOptions().toString();
+		return productService.GetProductsOptions().toString();
 	}
 	
 	@GetMapping("GetOptionsByProductId/{id}")
 	public String GetOptionsByProductId(@PathVariable Integer id) {
-		return productController.GetOptionsByProductId(id).toString();
+		return productService.GetOptionsByProductId(id).toString();
 	}
 	
 	@GetMapping("GetOptionById/{id}")
 	public String GetOptionById(@PathVariable Integer id) {
-		return productController.GetOptionById(id).toString();
+		return productService.GetOptionById(id).toString();
 	}
 	
 	@GetMapping("GetPromotionItems")
 	public String GetPromotionItems() {
-		return productController.GetPromotionItems().toString();
+		return productService.GetPromotionItems().toString();
 	}
 	
 	@GetMapping("GetPromotionItemByPromotionId/{id}")
 	public String GetPromotionItemByPromotionId(@PathVariable Integer id) {
-		return productController.GetPromotionItemByPromotionId(id).toString();
+		return productService.GetPromotionItemByPromotionId(id).toString();
 	}
 	
 	@GetMapping("GetPromotionItemById/{id}")
 	public String GetPromotionItemById(@PathVariable Integer id) {
-		return productController.GetPromotionItemById(id).toString();
+		return productService.GetPromotionItemById(id).toString();
 	}
 	
 	@GetMapping("GetWaiters")
 	public String GetWaiters() {
-		return miscController.GetWaiters().toString();
+		return miscService.GetWaiters().toString();
 	}
 
 	@GetMapping("GetWaiters/{id}")
 	public String GetWaiters(@PathVariable Integer id) {
-		return miscController.GetWaiterById(id).toString();
+		return miscService.GetWaiterById(id).toString();
 	}
 
 	@GetMapping("GetTables")
 	public String GetTables() {
-		return miscController.GetTables().toString();
+		return miscService.GetTables().toString();
 	}
 	
 	@GetMapping("GetTables/{id}")
 	public String GetTableById(@PathVariable Integer id) {
-		return miscController.GetTableById(id).toString();
+		return miscService.GetTableById(id).toString();
 	}
 }
