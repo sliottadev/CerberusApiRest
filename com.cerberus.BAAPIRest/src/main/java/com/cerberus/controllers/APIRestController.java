@@ -3,6 +3,7 @@ package com.cerberus.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cerberus.enums.LoggerType;
 import com.cerberus.helpers.GenericMapper;
 import com.cerberus.helpers.Logger;
+import com.cerberus.models.Product;
 import com.cerberus.models.Rol;
+import com.cerberus.models.User;
 import com.cerberus.services.IMiscService;
 import com.cerberus.services.IProductService;
 import com.cerberus.services.IUserService;
@@ -44,8 +47,8 @@ public class APIRestController {
 	}
 	
 	@GetMapping("GetUsers")
-	public String GetUsers() {
-		return userService.GetUsers().toString();
+	public Iterable<User> GetUsers() {
+		return userService.GetUsers();
 	}
 	
 	@GetMapping("GetUserById/{id}")
@@ -53,9 +56,10 @@ public class APIRestController {
 		return userService.GetUserById(id).toString();
 	}
 	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("GetProducts")
-	public String GetProducts() {
-		return productService.GetProducts().toString();
+	public Iterable<Product> GetProducts() {
+		return productService.GetProducts();
 	}
 	
 	@GetMapping("GetProductById/{id}")

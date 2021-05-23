@@ -16,6 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="Users")
 public class User implements Serializable{
@@ -52,6 +55,7 @@ public class User implements Serializable{
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "RolId")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  
 	private Rol rol;
 
 	public Integer getUserId() {

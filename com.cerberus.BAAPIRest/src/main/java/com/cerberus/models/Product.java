@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="Products")
 public class Product implements Serializable{
@@ -70,13 +72,37 @@ public class Product implements Serializable{
 	@Column(name = "Days" )	
 	private String days;
 	
+	@Column(name = "IsFather" )	
+	private Boolean isFather;
+	
+	@Column(name = "FatherId" )	
+	private Integer fatherId;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CategoryId")	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  
 	private Category category;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="ImageId")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  
 	private Image image;
+	
+	public Boolean getIsFrather() {
+		return isFather;
+	}
+
+	public void setIsFather(Boolean isFather) {
+		this.isFather = isFather;
+	}
+
+	public Integer getFatherId() {
+		return fatherId;
+	}
+
+	public void setFatherId(Integer fatherId) {
+		this.fatherId = fatherId;
+	}
 
 	public Integer getProductId() {
 		return productId;
@@ -242,19 +268,5 @@ public class Product implements Serializable{
 		this.category = category;
 		this.image = image;
 	}
-
-	@Override
-	public String toString() {
-		return "{ \"productId\":\"" + productId + "\", \"description\":\"" + description + "\", \"details\":\""
-				+ details + "\", \"price\":\"" + price + "\", \"hasOptions\":\"" + hasOptions + "\", \"enabled\":\""
-				+ enabled + "\", \"createDate\":\"" + createDate + "\", \"modifyDate\":\"" + modifyDate
-				+ "\", \"deleteDate\":\"" + deleteDate + "\", \"isPromo\":\"" + isPromo + "\", \"startDate\":\""
-				+ startDate + "\", \"endDate\":\"" + endDate + "\", \"hourStart\":\"" + hourStart + "\", \"hourEnd\":\""
-				+ hourEnd + "\", \"days\":\"" + days + "\", \"category\": {" + category.toString() + " }, \"image\":\"" + image
-				+ "\"}";
-	}
-	
-	
-
 	
 }

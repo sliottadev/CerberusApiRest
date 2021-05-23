@@ -53,10 +53,5 @@ public class Rol implements Serializable{
 		RolId = rolId;
 		Description = description;
 	}
-
-	@Override
-	public String toString() {
-		return "{\"RolId\":" + RolId + ", \"Description\":\"" + Description + "\"}";
-	}
 		
 }

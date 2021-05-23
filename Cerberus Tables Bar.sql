@@ -1,3 +1,9 @@
+create database CerberusTest
+go
+
+use CerberusTest
+go
+
 --=======================================================================--
 --				PRODUCTOS Y RELACIONES                                   --
 --=======================================================================--
@@ -25,6 +31,8 @@ CREATE TABLE Products (
 	ModifyDate DateTime2 not null default '01-01-1800',
 	DeleteDate DateTime not null default '01-01-1800',
 	IsPromo bit not null default 0,
+	IsFather bit not null default 0,
+	FatherId int,
 	--solo si es promo
 	StartDate DateTime2 default '01-01-1800' ,
 	EndDate DateTime2 default '01-01-1800',
@@ -38,21 +46,21 @@ CREATE TABLE Products (
 	CONSTRAINT FK_PRODUCT_IMAGE FOREIGN KEY (ImageId) REFERENCES Images(ImageId)
 )
 
-CREATE TABLE Options (
-	OptionId int primary key identity(1,1),
-	[Description] varchar(50) not null,
-	Details varchar(MAX),
-	Price Decimal(9,3) not null,
-	CreateDate DateTime2 not null,
-	ModifyDate DateTime2 not null default '01-01-1800',
-	DeleteDate DateTime not null default '01-01-1800',
-	[Enabled] bit not null default 1,
-	--FK
-	ProductId int not null, --ProducttoPadre
-	ImageId int,
-	CONSTRAINT FK_OPTION_PRODUCT FOREIGN KEY (ProductId) REFERENCES Products(ProductId),
-	CONSTRAINT FK_OPTION_IMAGE FOREIGN KEY (ImageId) REFERENCES Images(ImageId)
-)
+--CREATE TABLE Options (
+--	OptionId int primary key identity(1,1),
+--	[Description] varchar(50) not null,
+--	Details varchar(MAX),
+--	Price Decimal(9,3) not null,
+--	CreateDate DateTime2 not null,
+--	ModifyDate DateTime2 not null default '01-01-1800',
+--	DeleteDate DateTime not null default '01-01-1800',
+--	[Enabled] bit not null default 1,
+--	--FK
+--	ProductId int not null, --ProducttoPadre
+--	ImageId int,
+--	CONSTRAINT FK_OPTION_PRODUCT FOREIGN KEY (ProductId) REFERENCES Products(ProductId),
+--	CONSTRAINT FK_OPTION_IMAGE FOREIGN KEY (ImageId) REFERENCES Images(ImageId)
+--)
 
 CREATE TABLE PromotionsItems (
 	PromotionItemsId int primary Key identity(1,1),
@@ -63,7 +71,7 @@ CREATE TABLE PromotionsItems (
 	OptionId int,
 	CONSTRAINT FK_PROMOTIONITEM_PRODUCT_PROMO FOREIGN KEY (PromotionId) REFERENCES Products(ProductId),
 	CONSTRAINT FK_PROMOTIONITEM_PRODUCT FOREIGN KEY (ProductId) REFERENCES Products(ProductId),
-	CONSTRAINT FK_PROMOTIONITEM_OPTION FOREIGN KEY (OptionId) REFERENCES Options(OptionId)
+--	CONSTRAINT FK_PROMOTIONITEM_OPTION FOREIGN KEY (OptionId) REFERENCES Options(OptionId)
 )
 
 --=======================================================================--
@@ -198,6 +206,6 @@ CREATE TABLE OrderDetails(
 	OptionId int, --si el producto tiene Opciones se busca el item de Opcion
 	CONSTRAINT FK_ORDERDETAILS_ORDER FOREIGN KEY (OrderId) REFERENCES Orders(OrderId),
 	CONSTRAINT FK_ORDERDETAILS_PRODUCT FOREIGN KEY (ProductId) REFERENCES Products(ProductId),
-	CONSTRAINT FK_ORDERDETAILS_OPTION FOREIGN KEY (OptionId) REFERENCES Options(OptionId)
+	--CONSTRAINT FK_ORDERDETAILS_OPTION FOREIGN KEY (OptionId) REFERENCES Options(OptionId)
 )
 
