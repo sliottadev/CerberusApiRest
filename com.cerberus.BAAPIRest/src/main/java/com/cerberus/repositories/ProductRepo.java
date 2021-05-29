@@ -6,11 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.cerberus.models.Category;
 import org.springframework.stereotype.Repository;
 
 import com.cerberus.enums.LoggerType;
 import com.cerberus.helpers.Logger;
-import com.cerberus.models.Option;
 import com.cerberus.models.Product;
 import com.cerberus.models.PromotionItem;
 
@@ -49,7 +49,8 @@ public class ProductRepo implements IProductRepo {
 			this.log.Write(LoggerType.LOG_END, "GetProducts");
 		}
 	}
-	
+
+	/*
 	@SuppressWarnings("unchecked")
 	@Override
 	public Iterable<Option> GetProductsOptions() {
@@ -118,6 +119,7 @@ public class ProductRepo implements IProductRepo {
 			this.log.Write(LoggerType.LOG_END, "GetOptionById" + id.toString());
 		}
 	}
+	*/
 
 	@Override
 	public Product GetProductById(Integer id) {
@@ -141,26 +143,23 @@ public class ProductRepo implements IProductRepo {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public Iterable<PromotionItem> GetPromotionItems() {
+	public Iterable<Category> GetCategories() {
 
-		this.log.Write(LoggerType.LOG_START, "GetPromotionItems");
-		Iterable<PromotionItem> aux = new ArrayList<PromotionItem>();
+		this.log.Write(LoggerType.LOG_START, "GetCategories");
+		Iterable<Category> aux = new ArrayList<Category>();
 		try {
-			
 			this.manager.getTransaction().begin();
-			aux = this.manager.createQuery("FROM PromotionItem").getResultList();
+			aux = this.manager.createQuery("FROM Category").getResultList();
 			this.manager.getTransaction().commit();
 			return aux;
-			
 		} catch (Exception e) {
-			
-			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener lista de Items de Promocion");
-			return null;	
+			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener lista de Categorias");
+			this.manager.getTransaction().rollback();
+			return null;
 		}
 		finally {
-			this.log.Write(LoggerType.LOG_END, "GetPromotionItems");
+			this.log.Write(LoggerType.LOG_END, "GetCategories");
 		}
 	}
 
@@ -186,27 +185,4 @@ public class ProductRepo implements IProductRepo {
 			this.log.Write(LoggerType.LOG_END, "GetPromotionItemByPromotionId" + id.toString());
 		}
 	}
-
-	@Override
-	public PromotionItem GetPromotionItemById(Integer id) {
-
-		this.log.Write(LoggerType.LOG_START, "GetPromotionItemById = " + id.toString());
-		PromotionItem aux = new PromotionItem();
-		try {
-			
-			this.manager.getTransaction().begin();
-			aux = (PromotionItem) this.manager.createQuery("FROM PromotionItem p WHERE p.promotionItemsId = " + id.toString()).getSingleResult();
-			this.manager.getTransaction().commit();
-			return aux;
-			
-		} catch (Exception e) {
-			
-			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener Item de Promocion con id = " + id.toString());
-			return null;	
-		}
-		finally {
-			this.log.Write(LoggerType.LOG_END, "GetPromotionItemById" + id.toString());
-		}
-	}
-
 }

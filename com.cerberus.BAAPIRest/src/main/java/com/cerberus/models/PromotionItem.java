@@ -34,10 +34,6 @@ public class PromotionItem implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ProductId")
 	private Product product;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "OptionId")
-	private Option option;
 
 	public Integer getPromotionItemsId() {
 		return promotionItemsId;
@@ -71,14 +67,6 @@ public class PromotionItem implements Serializable {
 		this.product = productId;
 	}
 
-	public Option getOptionId() {
-		return option;
-	}
-
-	public void setOptionId(Option optionId) {
-		this.option = optionId;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -86,21 +74,10 @@ public class PromotionItem implements Serializable {
 	public PromotionItem() {
 	}
 
-	public PromotionItem(Integer promotionItemsId, Integer quantity, Integer promotionId, Product product,
-			Option option) {
+	public PromotionItem(Integer promotionItemsId, Integer quantity, Integer promotionId, Product product) {
 		this.promotionItemsId = promotionItemsId;
 		this.quantity = quantity;
 		this.promotionId = promotionId;
 		this.product = product;
-		this.option = option;
 	}
-
-	@Override
-	public String toString() {
-		return "{ \"promotionItemsId\":\"" + promotionItemsId + "\", \"quantity\":\"" + quantity
-				+ "\", \"promotionId\":\"" + promotionId + "\", \"product\":" + ((product == null) ? "\"null\"" : product.toString()) + ", \"option\":\"" + ((option == null) ? "\"null\"" : option.toString())
-				+ "\"}";
-	}
-	
-	
 }

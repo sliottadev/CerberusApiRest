@@ -42,10 +42,6 @@ public class OrderDetail implements Serializable{
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="OrderId")
 	private Order order;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "OptionId")
-	private Option option;
 
 	public Integer getQuantity() {
 		return quantity;
@@ -87,14 +83,6 @@ public class OrderDetail implements Serializable{
 		this.order = order;
 	}
 
-	public Option getOption() {
-		return option;
-	}
-
-	public void setOption(Option option) {
-		this.option = option;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -103,14 +91,12 @@ public class OrderDetail implements Serializable{
 		return orderDetailId;
 	}
 
-	public OrderDetail(Integer quantity, Boolean rewarded, Integer bonusPorc, String state, Order order,
-			Option option) {
+	public OrderDetail(Integer quantity, Boolean rewarded, Integer bonusPorc, String state, Order order) {
 		this.quantity = quantity;
 		this.rewarded = rewarded;
 		this.bonusPorc = bonusPorc;
 		this.state = state;
 		this.order = order;
-		this.option = option;
 	}
 
 	public OrderDetail() {

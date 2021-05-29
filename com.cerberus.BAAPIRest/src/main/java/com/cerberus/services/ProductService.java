@@ -1,9 +1,9 @@
 package com.cerberus.services;
 
+import com.cerberus.models.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cerberus.models.Option;
 import com.cerberus.models.Product;
 import com.cerberus.models.PromotionItem;
 import com.cerberus.repositories.IProductRepo;
@@ -20,38 +20,17 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public Iterable<Option> GetProductsOptions() {
-		return productRepo.GetProductsOptions();
-	}
-
-	@Override
-	public Iterable<Option> GetOptionsByProductId(Integer id) {
-		return productRepo.GetOptionsByProductId(id);
-	}
-
-	@Override
-	public Option GetOptionById(Integer id) {
-		return productRepo.GetOptionById(id);
-	}
-
-	@Override
 	public Product GetProductById(Integer id) {
 		return productRepo.GetProductById(id);
 	}
 
 	@Override
-	public Iterable<PromotionItem> GetPromotionItems() {
-		return productRepo.GetPromotionItems();
+	public Iterable<Category> GetCategories() {
+		return productRepo.GetCategories();
 	}
 
 	@Override
 	public Iterable<PromotionItem> GetPromotionItemByPromotionId(Integer id) {
 		return productRepo.GetPromotionItemByPromotionId(id);
 	}
-
-	@Override
-	public PromotionItem GetPromotionItemById(Integer id) {
-		return productRepo.GetPromotionItemById(id);
-	}
-
 }
