@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+/target/generated-test-sources/
+/target/generated-sources/
+/target/classes/

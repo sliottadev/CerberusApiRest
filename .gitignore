@@ -11,7 +11,7 @@
 .mtj.tmp/
 
 # Target
-com.cerberus.BAAPIRest/target/*
+.com.cerberus.BAAPIRest/target/
 
 # Package Files #
 *.jar
