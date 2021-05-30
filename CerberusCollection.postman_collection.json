@@ -253,6 +253,118 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "GetWaiters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/waiter",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"waiter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetWaitersById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/waiters/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"waiters",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WaiterRegister",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"waiterId\": null,\r\n    \"code\": \"0010\",\r\n    \"name\": \"Sebastian\",\r\n    \"details\": \"\",\r\n    \"deleted\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/waiters/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"waiters",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateWaiter",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"waiterId\": null,\r\n    \"code\": \"0011\",\r\n    \"name\": \"Raquel\",\r\n    \"details\": \"\",\r\n    \"deleted\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/waiters/1002",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"waiters",
+						"1002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteWaiter",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/waiters/1003",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"waiters",
+						"1003"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
