@@ -19,59 +19,65 @@ Insert into categories values
 --Carga Productos sin Imagenes
 --delete Products
 --DBCC CHECKIDENT (Products, RESEED, 0)
-Insert Into Products ([Description], Details, price, HasOptions, [Enabled], categoryId, createDate)
+Insert Into Products ([Description], Details, price, HasOptions, [Enabled], categoryId, createDate, isFather, FatherId)
 values
 	--Hamburguesas
 	--[Description],		  Details,																  price,  HasOptions, [Enabled], categoryId, createDate
-	('Hamburguesa Completa', '220g de carne Vacuna con jamon, queso cheddar, lechuga, tomate, huevo', 340.00, 0,          1,         1,          Cast(GetDate() as DateTime2)),
-	('Hamburguesa c/Queso',  '220g de carne Vacuna con queso cheddar', 220.00, 0, 1, 1, Cast(GetDate() as DateTime2)),
-	('Hamburguesa de Pollo Completa', '220g de carne de Pollo con jamon, queso cheddar, lechuga, tomate, huevo', 340.00, 0, 1, 1, Cast(GetDate() as DateTime2)),
-	('Hamburguesa de Pescado', '220g de carne de salmón con jamon, queso cheddar, lechuga, tomate, huevo', 340.00, 0, 0, 1, Cast(GetDate() as DateTime2)),
+	('Hamburguesa Completa', '220g de carne Vacuna con jamon, queso cheddar, lechuga, tomate, huevo', 340.00, 0,          1,         1,          Cast(GetDate() as DateTime2),0,0),
+	('Hamburguesa c/Queso',  '220g de carne Vacuna con queso cheddar', 220.00, 0, 1, 1, Cast(GetDate() as DateTime2),0,0),
+	('Hamburguesa de Pollo Completa', '220g de carne de Pollo con jamon, queso cheddar, lechuga, tomate, huevo', 340.00, 0, 1, 1, Cast(GetDate() as DateTime2),0,0),
+	('Hamburguesa de Pescado', '220g de carne de salmón con jamon, queso cheddar, lechuga, tomate, huevo', 340.00, 0, 0, 1, Cast(GetDate() as DateTime2),0,0),
+
 	--Bebidas sin Alcohol
-	('Botella 600 Linea CocaCola', '', 120.00, 1, 1, 2, Cast(GetDate() as DateTime2)), --tiene Opciones
-	('Agua Mineral Glaciar s/Gas', '', 110.00, 0, 1, 2, Cast(GetDate() as DateTime2)), 
-	('Agua Mineral Glaciar c/Gas', '', 110.00, 0, 1, 2, Cast(GetDate() as DateTime2)), 
-	('Agua Mineral Villa del Sur c/Gas', '', 110.00, 0, 0, 2, Cast(GetDate() as DateTime2)),
-	('Lata Speed', '', 125.00, 0, 1, 2, Cast(GetDate() as DateTime2)),
+	('Botella 600 Linea CocaCola', '', 120.00, 1, 1, 2, Cast(GetDate() as DateTime2),1,0), --tiene Opciones
+	('Coca-Cola', '', 120.00, 1, 1, 2, Cast(GetDate() as DateTime2),0,5), 
+	('Sprite', '', 120.00, 1, 1, 2, Cast(GetDate() as DateTime2),0,5), 
+	('Fanta', '', 120.00, 1, 1, 2, Cast(GetDate() as DateTime2),0,5),
+	('Acuarius', '', 120.00, 1, 1, 2, Cast(GetDate() as DateTime2),0,5),
+
+	('Agua Mineral Glaciar s/Gas', '', 110.00, 0, 1, 2, Cast(GetDate() as DateTime2),0,0), 
+	('Agua Mineral Glaciar c/Gas', '', 110.00, 0, 1, 2, Cast(GetDate() as DateTime2),0,0), 
+	('Agua Mineral Villa del Sur c/Gas', '', 110.00, 0, 0, 2, Cast(GetDate() as DateTime2),0,0),
+	('Lata Speed', '', 125.00, 0, 1, 2, Cast(GetDate() as DateTime2),0,0),
 	--Tragos
-	('Margarita', 'Jugo de Lima, Triple Sec, Tequila, sal, hielo', 180.00, 0, 1, 3, Cast(GetDate() as DateTime2)),
-	('Daikiri Frutilla', 'Pulpa de frutilla, Ron, jugo de limon, azucar, licor', 180.00, 0, 1, 3, Cast(GetDate() as DateTime2)),
-	('Bloody Mary', 'Jugo de tomate, Vodka, Salsa Tabasco, Limon', 180.00, 0, 1, 3, Cast(GetDate() as DateTime2)),
-	('Fernet-Cola', 'Fernet, CocaCola y Hielo', 180.00, 0, 1, 3, Cast(GetDate() as DateTime2)),
+	('Margarita', 'Jugo de Lima, Triple Sec, Tequila, sal, hielo', 180.00, 0, 1, 3, Cast(GetDate() as DateTime2),0,0),
+	('Daikiri Frutilla', 'Pulpa de frutilla, Ron, jugo de limon, azucar, licor', 180.00, 0, 1, 3, Cast(GetDate() as DateTime2),0,0),
+	('Bloody Mary', 'Jugo de tomate, Vodka, Salsa Tabasco, Limon', 180.00, 0, 1, 3, Cast(GetDate() as DateTime2),0,0),
+	('Fernet-Cola', 'Fernet, CocaCola y Hielo', 180.00, 0, 1, 3, Cast(GetDate() as DateTime2),0,0),
 	--Cervezas
-	('Chopp Amber Ale', 'Sabor a Malta y Lupulo', 150.00, 0, 1, 4, Cast(GetDate() as DateTime2)),
-	('Chopp Scout', 'Sabor Cafe Chocolate y sabores tostados', 150.00, 0, 1, 4, Cast(GetDate() as DateTime2)),
-	('Chopp IPA', 'Intenso Sabor a Lupulo', 150.00, 0, 1, 4, Cast(GetDate() as DateTime2)),
-	('Chopp Blonde Ale', 'Sabor a Malta suave y Lupulo Semi Amargo', 150.00, 0, 1, 4, Cast(GetDate() as DateTime2)),
+	('Chopp Amber Ale', 'Sabor a Malta y Lupulo', 150.00, 0, 1, 4, Cast(GetDate() as DateTime2),0,0),
+	('Chopp Scout', 'Sabor Cafe Chocolate y sabores tostados', 150.00, 0, 1, 4, Cast(GetDate() as DateTime2),0,0),
+	('Chopp IPA', 'Intenso Sabor a Lupulo', 150.00, 0, 1, 4, Cast(GetDate() as DateTime2),0,0),
+	('Chopp Blonde Ale', 'Sabor a Malta suave y Lupulo Semi Amargo', 150.00, 0, 1, 4, Cast(GetDate() as DateTime2),0,0),
 	--Pizzas
-	('Calabresa Grande', 'Muzzarella y Peperoni', 280.00, 0, 1, 5, Cast(GetDate() as DateTime2)),
-	('Muzzarella Grande', 'Muzzarella y Aceitunas', 250.00, 0, 1, 5, Cast(GetDate() as DateTime2)),
-	('Fugazzeta', 'Queso y Cebolla', 320.00, 0, 1, 5, Cast(GetDate() as DateTime2)),
+	('Calabresa Grande', 'Muzzarella y Peperoni', 280.00, 0, 1, 5, Cast(GetDate() as DateTime2),0,0),
+	('Muzzarella Grande', 'Muzzarella y Aceitunas', 250.00, 0, 1, 5, Cast(GetDate() as DateTime2),0,0),
+	('Fugazzeta', 'Queso y Cebolla', 320.00, 0, 1, 5, Cast(GetDate() as DateTime2),0,0),
 	--Micelaneas
-	('Picada de fiambres para 4', 'Variedad de Fiambre y Quesos', 780.00, 0, 1, 6, Cast(GetDate() as DateTime2)),
-	('Quesadillas', '', 320.00, 0, 1, 6, Cast(GetDate() as DateTime2)),
-	('Matambre a la Pizza para 4', 'Matambre con muzzarella, salsa de tomate y aceitunas', 900.00, 0, 1, 6, Cast(GetDate() as DateTime2)),
+	('Picada de fiambres para 4', 'Variedad de Fiambre y Quesos', 780.00, 0, 1, 6, Cast(GetDate() as DateTime2),0,0),
+	('Quesadillas', '', 320.00, 0, 1, 6, Cast(GetDate() as DateTime2),0,0),
+	('Matambre a la Pizza para 4', 'Matambre con muzzarella, salsa de tomate y aceitunas', 900.00, 0, 1, 6, Cast(GetDate() as DateTime2),0,0),
 	--Empanadas
-	('Empanada al Horno', 'Empanada al Horno Varios Sabores', 75.00, 1, 1, 8, Cast(GetDate() as DateTime2)),
+	('Empanada al Horno', 'Empanada al Horno Varios Sabores', 75.00, 1, 1, 8, Cast(GetDate() as DateTime2),0,0),
 	--Promociones
-	('PROMO 001 - Pizza Muzzarella + 4 Chopps Cerveza', '', 1300.00, 0, 1, 7, Cast(GetDate() as DateTime2)), --Promo
+	('PROMO 001 - Pizza Muzzarella + 4 Chopps Cerveza', '', 1300.00, 0, 1, 7, Cast(GetDate() as DateTime2),0,0), --Promo
 	--Cerveza General Invisible en Menu
-	('Chopp Cerveza a Eleccion', '', 150.00, 0, 0, 4, Cast(GetDate() as DateTime2))
+	('Chopp Cerveza a Eleccion', '', 150.00, 0, 0, 4, Cast(GetDate() as DateTime2),0,0)
 --select * from products
 
 -- Carga Opciones de Producto
 --delete options
 --DBCC CHECKIDENT (options, RESEED, 0)
-insert into options ([description], Details, price, productId, enabled, CreateDate)
-values
-	('Coca-Cola','',120.00, 5, 1, Cast(GetDate() as DateTime2)),
-	('Sprite','',120.00, 5, 1, Cast(GetDate() as DateTime2)),
-	('Fanta','',120.00, 5, 1, Cast(GetDate() as DateTime2)),
-	('Acuarius','',120.00, 5, 1, Cast(GetDate() as DateTime2)),
-	('Empanada de Carne','Carne cortada a cuchillo, aceitunas y especias',75.00, 24, 1, Cast(GetDate() as DateTime2)),
-	('Empanada de Pollo','Pollo y especias',75.00, 24, 1, Cast(GetDate() as DateTime2)),
-	('Empanada de Jamon y Queso','Jamon, Muzzarella y aceitunas',75.00, 24, 1, Cast(GetDate() as DateTime2))
-go
+--insert into options ([description], Details, price, productId, enabled, CreateDate)
+--values
+--	('Coca-Cola','',120.00, 5, 1, Cast(GetDate() as DateTime2)),
+--	('Sprite','',120.00, 5, 1, Cast(GetDate() as DateTime2)),
+--	('Fanta','',120.00, 5, 1, Cast(GetDate() as DateTime2)),
+--	('Acuarius','',120.00, 5, 1, Cast(GetDate() as DateTime2)),
+--	('Empanada de Carne','Carne cortada a cuchillo, aceitunas y especias',75.00, 24, 1, Cast(GetDate() as DateTime2)),
+--	('Empanada de Pollo','Pollo y especias',75.00, 24, 1, Cast(GetDate() as DateTime2)),
+--	('Empanada de Jamon y Queso','Jamon, Muzzarella y aceitunas',75.00, 24, 1, Cast(GetDate() as DateTime2))
+--go
 --select * from options
 
 --Actualizo campo EsPromo

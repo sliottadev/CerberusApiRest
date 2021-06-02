@@ -1,7 +1,7 @@
 package TestRepo;
 
-import com.carberus.models.UserTest;
-import com.carberus.repositories.UserRepoDemo;
+import com.cerberus.models.UserTest;
+import com.cerberus.repositories.UserRepoDemo;
 
 public class RepoTest {
 

@@ -1,0 +1,133 @@
+body, html{
+    background: rgb(255,255,255);
+    background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(210,210,210,1) 90%);    
+    height: 100%;
+}
+
+.row{
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.col-2{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.col-10{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.toolbar{
+    background-color: #660066;
+    height: 100px;
+    margin: 0;
+    padding: 0;
+}
+
+.toolbar-logo{
+    margin: 0;
+    margin-left: 5%;
+    padding: 0;
+    height: 80%;
+}
+
+.toolbar-date{
+    margin-top: 3%;
+    margin-right: 5%;
+    color: white;
+    font-family: Trajan Pro;
+    text-align: right;
+}
+
+.toolbar-hour{
+    margin-top: 1%;
+    color: white;
+}
+
+.main-container{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.menu-container{
+    background-color: #660066;
+    margin: 3% !important;
+    padding: 0 !important;
+    width: 95% !important;
+    height: 800px;
+    text-align: center;
+    box-shadow: 4px 4px 5px rgb(92, 92, 92);
+}
+
+.frame-container{
+    background-color: #660066;
+    margin: 3% !important;
+    padding: 0 !important;
+    width: 95% !important;
+    height: 800px;
+    text-align: center;
+    box-shadow: 4px 4px 5px rgb(92, 92, 92);
+}
+
+
+.avatar{
+    width: 150px;
+    height: 150px;
+    margin-top: 5%;
+    border-style: solid;
+    border-color: white;
+    border-width: 5px;
+}
+
+.text-header{
+    color: white;
+    font-family: Myriad Pro;
+    text-align: center;    
+    margin: 0;
+    padding: 0;
+}
+
+.header-name{
+    margin-top: 15px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.header-user{
+    font-size: 20px;    
+}
+
+.hor-divider{
+    color: white;
+    height: 2px !important;
+    opacity: 100%;
+}
+
+.menu-button{
+	background-color: #660066 !important;
+	border-top: none !important;
+	border-bottom: none !important;
+	border-right: none !important;
+	border-color: white !important;
+	border-width: 5px !important;
+	text-align: left !important; 
+    width: 85%;
+    margin-bottom: 15px;
+}
+
+.spn-icnBtn{
+    margin-right: 15%;
+}
+
+.menu-button:hover{
+	color: #660066 !important;
+	background-color: white !important;
+	border-width: 20px !important;
+	border-color: #660066 !important;
+    box-shadow: 0 0 15px white;
+    text-shadow: 0 0 1px #660066;
+}
