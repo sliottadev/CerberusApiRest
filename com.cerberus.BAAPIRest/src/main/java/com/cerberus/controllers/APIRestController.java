@@ -15,7 +15,6 @@ import com.cerberus.helpers.Logger;
 import com.cerberus.models.Product;
 import com.cerberus.models.Rol;
 import com.cerberus.models.User;
-import com.cerberus.services.IMiscService;
 import com.cerberus.services.IProductService;
 import com.cerberus.services.IUserService;
 
@@ -29,8 +28,6 @@ public class APIRestController {
 	@Autowired
 	IProductService productService;
 	
-	@Autowired
-	IMiscService miscService;
 	
 	@Autowired
 	Logger log;

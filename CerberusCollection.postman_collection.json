@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "1ee28522-3b41-4e68-8c4d-d5cdad89fab6",
+		"name": "Cerberus Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/test",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/users/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"users",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/users/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"users",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"userName\": \"Auditor 1\",\r\n        \"lastConnection\": \"2021-05-23T19:23:23.270+00:00\",\r\n        \"createDate\": \"2021-05-23T19:23:23.270+00:00\",\r\n        \"modifyDate\": \"1800-01-01T03:00:00.000+00:00\",\r\n        \"deleteDate\": \"1800-01-01T03:00:00.000+00:00\",\r\n        \"image\": null,\r\n        \"rol\": {\r\n            \"description\": \"Auditor\",\r\n            \"rolId\": 3\r\n        },\r\n        \"pin\": \"9999\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"Seb Liotta Pijalarga\",\r\n    \"lastConnection\": \"2021-05-23T19:23:23.270+00:00\",\r\n    \"createDate\": \"2021-05-23T19:23:23.270+00:00\",\r\n    \"modifyDate\": \"1800-01-01T03:00:00.000+00:00\",\r\n    \"deleteDate\": \"1800-01-01T03:00:00.000+00:00\",\r\n    \"image\": null,\r\n    \"rol\": {\r\n        \"description\": \"Administrador Total\",\r\n        \"rolId\": 1\r\n    },\r\n    \"pin\": \"2222\"\r\n}\r\n    ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/users/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"users",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetClients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/clients",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ClientLogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"clientId\": 1,\r\n        \"userName\": \"Raul\",\r\n        \"mail\": \"\",\r\n        \"pass\": \"3001\",\r\n        \"isGuest\": true,\r\n        \"logInFacebook\": false,\r\n        \"logInGoogle\": false,\r\n        \"createDate\": \"2021-05-17T01:33:55.470+00:00\",\r\n        \"modifyDate\": \"1800-01-01T03:00:00.000+00:00\",\r\n        \"deleteDate\": \"1800-01-01T03:00:00.000+00:00\",\r\n        \"image\": null\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/clients",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ClientRegister",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"clientId\": null,\r\n        \"userName\": \"Pedro\",\r\n        \"mail\": \"pedrocomepiedras@gmail.com\",\r\n        \"pass\": \"123asd\",\r\n        \"isGuest\": true,\r\n        \"logInFacebook\": false,\r\n        \"logInGoogle\": false,\r\n        \"createDate\": \"2021-05-17T01:33:55.470+00:00\",\r\n        \"modifyDate\": \"1800-01-01T03:00:00.000+00:00\",\r\n        \"deleteDate\": \"1800-01-01T03:00:00.000+00:00\",\r\n        \"image\": null\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/clients/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"clients",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateClient",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"clientId\": null,\r\n        \"userName\": \"Nombre Actualizado\",\r\n        \"mail\": \"mailactualizado@gmail.com\",\r\n        \"pass\": \"1234asdr\",\r\n        \"isGuest\": true,\r\n        \"logInFacebook\": false,\r\n        \"logInGoogle\": false,\r\n        \"createDate\": \"2021-05-17T01:33:55.470+00:00\",\r\n        \"modifyDate\": \"1800-01-01T03:00:00.000+00:00\",\r\n        \"deleteDate\": \"1800-01-01T03:00:00.000+00:00\",\r\n        \"image\": null\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/clients/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"clients",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteClient",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/clients/1003",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"clients",
+						"1003"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetWaiters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/waiter",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"waiter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetWaitersById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/waiters/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"waiters",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WaiterRegister",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"waiterId\": null,\r\n    \"code\": \"0010\",\r\n    \"name\": \"Sebastian\",\r\n    \"details\": \"\",\r\n    \"deleted\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/waiters/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"waiters",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateWaiter",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"waiterId\": null,\r\n    \"code\": \"0011\",\r\n    \"name\": \"Raquel\",\r\n    \"details\": \"\",\r\n    \"deleted\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/waiters/1002",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"waiters",
+						"1002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteWaiter",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/waiters/1003",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"waiters",
+						"1003"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

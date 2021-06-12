@@ -44,6 +44,7 @@ public class UserRepo implements IUserRepo {
 		} catch (Exception e) {
 
 			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener lista de Usuarios");
+			this.manager.getTransaction().rollback();
 			return null;
 		}
 		finally {
@@ -77,7 +78,7 @@ public class UserRepo implements IUserRepo {
 	@Override
 	public User CreateUser(User user) {
 
-
+		
 		this.manager.getTransaction().begin();
 		this.manager.persist(user);
 		this.manager.flush();
