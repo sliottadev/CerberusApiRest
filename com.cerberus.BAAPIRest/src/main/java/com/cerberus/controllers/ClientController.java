@@ -33,7 +33,8 @@ public class ClientController {
 	public Iterable<Client> GetClients(){
 		return clientService.GetClients();
 	}
-	
+
+	/*
 	@PostMapping 
 	public Client ClientLogin(@RequestBody Client client) {
 		return clientService.ClientLogin(client);
@@ -43,6 +44,7 @@ public class ClientController {
 	public Client ClientRegister(@RequestBody Client client) {
 		return clientService.ClientRegister(client);
 	}
+	*/
 	
 	@PutMapping("/{id}")
 	public Client UpdateClient(@RequestBody Client client, @PathVariable Integer id) {
