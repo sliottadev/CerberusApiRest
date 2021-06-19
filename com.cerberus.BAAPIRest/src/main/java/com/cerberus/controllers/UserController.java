@@ -70,4 +70,5 @@ public class UserController {
     public String GetPermissionById(@PathVariable Integer id) {
         return userService.GetPermissionById(id).toString();
     }
+   
 }
