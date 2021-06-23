@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cerberus.helpers.Logger;
 import com.cerberus.models.Client;
 import com.cerberus.services.IClientService;
 
@@ -25,26 +24,11 @@ public class ClientController {
 	
 	@Autowired
 	private IClientService clientService;
-	
-	@Autowired
-	Logger log;
-	
+
 	@GetMapping 
 	public Iterable<Client> GetClients(){
 		return clientService.GetClients();
 	}
-
-	/*
-	@PostMapping 
-	public Client ClientLogin(@RequestBody Client client) {
-		return clientService.ClientLogin(client);
-	}
-	
-	@PostMapping("/register")
-	public Client ClientRegister(@RequestBody Client client) {
-		return clientService.ClientRegister(client);
-	}
-	*/
 	
 	@PutMapping("/{id}")
 	public Client UpdateClient(@RequestBody Client client, @PathVariable Integer id) {
@@ -55,6 +39,4 @@ public class ClientController {
 	public void DeleteClient(@PathVariable Integer id) {
 		clientService.DeleteClient(id);
 	}
-	
-	
 }
