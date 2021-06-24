@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 /**
  * ClientsController Path: "../auth/"
- * Controla: paths que no necesiten autenticacion
+ * Controla: paths que no necesiten autenticación
  * Entidades relacionadas: Client
  */
 @RestController

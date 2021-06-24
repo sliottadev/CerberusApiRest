@@ -8,7 +8,7 @@ public interface IMesaRepo {
 
 	public Mesa GetMesaById(Integer id);
 
-	public Mesa MesaRegister(Mesa mesa);
+	public Mesa CreateMesa(Mesa mesa);
 
 	public Mesa UpdateMesa(Mesa mesa, Integer id);
 

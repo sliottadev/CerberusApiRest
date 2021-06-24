@@ -148,8 +148,12 @@ public class Order implements Serializable{
 		return clientId;
 	}
 
+	public void setClientId(Client clientId) {
+		this.clientId = clientId;
+	}
+
 	public Order(Currency partialPayment, String state, Integer bonusPorc, Date createDate, Date closeDate,
-			Date modifyDate, Date deleteDate, Client clientId, Mesa table, Waiter waiter) {
+				 Date modifyDate, Date deleteDate, Client clientId, Mesa table, Waiter waiter) {
 		this.partialPayment = partialPayment;
 		this.state = state;
 		this.bonusPorc = bonusPorc;

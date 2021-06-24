@@ -23,8 +23,8 @@ public class MesaService implements IMesaService {
 	}
 
 	@Override
-	public Mesa MesaRegister(Mesa mesa) {
-		return mesaRepo.MesaRegister(mesa);
+	public Mesa CreateMesa(Mesa mesa) {
+		return mesaRepo.CreateMesa(mesa);
 	}
 
 	@Override

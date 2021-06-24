@@ -73,7 +73,7 @@ public class MesaRepo implements IMesaRepo {
 	}
 
 	@Override
-	public Mesa MesaRegister(Mesa mesa) {
+	public Mesa CreateMesa(Mesa mesa) {
 		this.log.Write(LoggerType.LOG_START, "MesaRegister");
 		try {
 			
