@@ -28,7 +28,7 @@ public class Order implements Serializable{
 	private Integer OrderId;
 
 	@Column(name = "PartialPayment")
-	private Currency partialPayment;
+	private Double partialPayment;
 
 	@Column(name = "State")
 	private String state;
@@ -68,11 +68,11 @@ public class Order implements Serializable{
 		OrderId = orderId;
 	}
 
-	public Currency getPartialPayment() {
+	public Double getPartialPayment() {
 		return partialPayment;
 	}
 
-	public void setPartialPayment(Currency partialPayment) {
+	public void setPartialPayment(Double partialPayment) {
 		this.partialPayment = partialPayment;
 	}
 
@@ -152,7 +152,7 @@ public class Order implements Serializable{
 		this.clientId = clientId;
 	}
 
-	public Order(Currency partialPayment, String state, Integer bonusPorc, Date createDate, Date closeDate,
+	public Order(Double partialPayment, String state, Integer bonusPorc, Date createDate, Date closeDate,
 				 Date modifyDate, Date deleteDate, Client clientId, Mesa table, Waiter waiter) {
 		this.partialPayment = partialPayment;
 		this.state = state;
