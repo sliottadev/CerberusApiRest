@@ -97,8 +97,9 @@ public class OrderRepo implements IOrderRepo{
         order.setModifyDate(order.getModifyDate());
         order.setDeleteDate(order.getDeleteDate());
         order.setClientId(order.getClientId());
-        order.setTable(order.getTable());
-        order.setWaiter(order.getWaiter());
+        order.setTableId(order.getTableId());
+        order.setWaiterId(order.getWaiterId());
+
         this.manager.flush();
         this.manager.getTransaction().commit();
 

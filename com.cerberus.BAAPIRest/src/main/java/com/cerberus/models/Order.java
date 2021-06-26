@@ -47,18 +47,19 @@ public class Order implements Serializable{
 	
 	@Column(name = "DeleteDate")
 	private Date deleteDate;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ClientId")
-	private Client clientId;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "TableId")
-	private Mesa table;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "WaiterId")
-	private Waiter waiter;
+
+	@Column(name = "ClientId")
+	private Integer clientId;
+
+	@Column(name = "TableId")
+	private Integer tableId;
+
+	@Column(name = "WaiterId")
+	private Integer waiterId;
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public Integer getOrderId() {
 		return OrderId;
@@ -124,36 +125,32 @@ public class Order implements Serializable{
 		this.deleteDate = deleteDate;
 	}
 
-	public Mesa getTable() {
-		return table;
-	}
-
-	public void setTable(Mesa table) {
-		this.table = table;
-	}
-
-	public Waiter getWaiter() {
-		return waiter;
-	}
-
-	public void setWaiter(Waiter waiter) {
-		this.waiter = waiter;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public Client getClientId() {
+	public Integer getClientId() {
 		return clientId;
 	}
 
-	public void setClientId(Client clientId) {
+	public void setClientId(Integer clientId) {
 		this.clientId = clientId;
 	}
 
+	public Integer getTableId() {
+		return tableId;
+	}
+
+	public void setTableId(Integer tableId) {
+		this.tableId = tableId;
+	}
+
+	public Integer getWaiterId() {
+		return waiterId;
+	}
+
+	public void setWaiterId(Integer waiterId) {
+		this.waiterId = waiterId;
+	}
+
 	public Order(Double partialPayment, String state, Integer bonusPorc, Date createDate, Date closeDate,
-				 Date modifyDate, Date deleteDate, Client clientId, Mesa table, Waiter waiter) {
+				 Date modifyDate, Date deleteDate, Integer clientId, Integer tableId, Integer waiterId) {
 		this.partialPayment = partialPayment;
 		this.state = state;
 		this.bonusPorc = bonusPorc;
@@ -162,8 +159,8 @@ public class Order implements Serializable{
 		this.modifyDate = modifyDate;
 		this.deleteDate = deleteDate;
 		this.clientId = clientId;
-		this.table = table;
-		this.waiter = waiter;
+		this.tableId = tableId;
+		this.waiterId = waiterId;
 	}
 
 	public Order() {
