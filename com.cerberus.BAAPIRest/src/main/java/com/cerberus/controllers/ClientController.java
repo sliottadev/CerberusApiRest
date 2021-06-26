@@ -1,5 +1,6 @@
 package com.cerberus.controllers;
 
+import com.cerberus.models.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,16 @@ public class ClientController {
 	@GetMapping 
 	public Iterable<Client> GetClients(){
 		return clientService.GetClients();
+	}
+
+	@GetMapping("/{id}")
+	public Client GetClientById(@PathVariable Integer id) {
+		return clientService.GetClientById(id);
+	}
+
+	@PostMapping
+	public Client CreateClient(@RequestBody Client client) {
+		return clientService.CreateClient(client);
 	}
 	
 	@PutMapping("/{id}")

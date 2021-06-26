@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.cerberus.models.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -51,42 +52,38 @@ public class ClientRepo implements IClientRepo{
 		}
 	}
 
+
 	@Override
-	public Client ClientLogin(Client client) {
-		this.log.Write(LoggerType.LOG_START, "ClientLogin");
+	public Client GetClientById(Integer id) {
+
+		this.log.Write(LoggerType.LOG_START, "GetClientById = " + id.toString());
 		Client aux = new Client();
 		try {
-			this.manager.getTransaction().begin();		
-			aux = (Client) this.manager.createQuery("FROM Client c WHERE c.pass = "+ client.getPass()+" AND (c.userName = '"+ client.getUserName()+"' OR c.mail = '"+ client.getMail()+"')").getSingleResult();        
+
+			this.manager.getTransaction().begin();
+			aux = (Client) this.manager.createQuery("FROM Client c WHERE c.clientId = " + id.toString()).getSingleResult();
 			this.manager.getTransaction().commit();
 			return aux;
-		}catch(Exception e) {
-			this.log.Write(LoggerType.LOG_ERROR, "Error al logear Cliente");
-			this.manager.getTransaction().rollback();
+
+		} catch (Exception e) {
+
+			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener cliente id = " + id.toString());
 			return null;
 		}
 		finally {
-			this.log.Write(LoggerType.LOG_END, "ClientLogin");
+			this.log.Write(LoggerType.LOG_END, "GetClientById = " + id.toString());
 		}
 	}
 
 	@Override
-	public Client ClientRegister(Client client) {
-		this.log.Write(LoggerType.LOG_START, "ClientRegister");
-		try {
-			this.manager.getTransaction().begin();
-			this.manager.persist(client);
-			this.manager.flush();
-			this.manager.getTransaction().commit();
-			return client;
-		}catch(Exception e) {
-			this.log.Write(LoggerType.LOG_ERROR, "Error al registrar Cliente");
-			this.manager.getTransaction().rollback();
-			return null;
-		}
-		finally {
-			this.log.Write(LoggerType.LOG_END, "ClientRegister");
-		}
+	public Client CreateClient(Client client) {
+
+		this.manager.getTransaction().begin();
+		this.manager.persist(client);
+		this.manager.flush();
+		this.manager.getTransaction().commit();
+
+		return client;
 	}
 
 	@Override
@@ -146,6 +143,45 @@ public class ClientRepo implements IClientRepo{
 			this.log.Write(LoggerType.LOG_END, "DeleteClient");
 		}
 		
+	}
+
+
+	@Override
+	public Client ClientLogin(Client client) {
+		this.log.Write(LoggerType.LOG_START, "ClientLogin");
+		Client aux = new Client();
+		try {
+			this.manager.getTransaction().begin();
+			aux = (Client) this.manager.createQuery("FROM Client c WHERE c.pass = "+ client.getPass()+" AND (c.userName = '"+ client.getUserName()+"' OR c.mail = '"+ client.getMail()+"')").getSingleResult();
+			this.manager.getTransaction().commit();
+			return aux;
+		}catch(Exception e) {
+			this.log.Write(LoggerType.LOG_ERROR, "Error al logear Cliente");
+			this.manager.getTransaction().rollback();
+			return null;
+		}
+		finally {
+			this.log.Write(LoggerType.LOG_END, "ClientLogin");
+		}
+	}
+
+	@Override
+	public Client ClientRegister(Client client) {
+		this.log.Write(LoggerType.LOG_START, "ClientRegister");
+		try {
+			this.manager.getTransaction().begin();
+			this.manager.persist(client);
+			this.manager.flush();
+			this.manager.getTransaction().commit();
+			return client;
+		}catch(Exception e) {
+			this.log.Write(LoggerType.LOG_ERROR, "Error al registrar Cliente");
+			this.manager.getTransaction().rollback();
+			return null;
+		}
+		finally {
+			this.log.Write(LoggerType.LOG_END, "ClientRegister");
+		}
 	}
 
 }
