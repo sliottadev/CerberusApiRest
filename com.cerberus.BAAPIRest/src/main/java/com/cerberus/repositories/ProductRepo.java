@@ -30,18 +30,15 @@ public class ProductRepo implements IProductRepo {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Iterable<Product> GetProducts() {
-		
 		this.log.Write(LoggerType.LOG_START, "GetProducts");
 		Iterable<Product> aux = new ArrayList<Product>();
 		try {
-			
 			this.manager.getTransaction().begin();
 			aux = this.manager.createQuery("FROM Product").getResultList();
 			this.manager.getTransaction().commit();
 			return aux;
-			
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener lista de Productos");
 			return null;	
 		}
@@ -123,18 +120,15 @@ public class ProductRepo implements IProductRepo {
 
 	@Override
 	public Product GetProductById(Integer id) {
-
 		this.log.Write(LoggerType.LOG_START, "GetProductById = " + id.toString());
 		Product aux = new Product();
 		try {
-			
 			this.manager.getTransaction().begin();
 			aux = (Product) this.manager.createQuery("FROM Product p WHERE p.productId = " + id.toString()).getSingleResult();
 			this.manager.getTransaction().commit();
 			return aux;
-			
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener Producto con id = " + id.toString());
 			return null;	
 		}
@@ -145,7 +139,6 @@ public class ProductRepo implements IProductRepo {
 
 	@Override
 	public Iterable<Category> GetCategories() {
-
 		this.log.Write(LoggerType.LOG_START, "GetCategories");
 		Iterable<Category> aux = new ArrayList<Category>();
 		try {
@@ -154,6 +147,7 @@ public class ProductRepo implements IProductRepo {
 			this.manager.getTransaction().commit();
 			return aux;
 		} catch (Exception e) {
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener lista de Categorias");
 			this.manager.getTransaction().rollback();
 			return null;
@@ -166,18 +160,15 @@ public class ProductRepo implements IProductRepo {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Iterable<PromotionItem> GetPromotionItemByPromotionId(Integer id) {
-
 		this.log.Write(LoggerType.LOG_START, "GetPromotionItemByPromotionId = " + id.toString());
 		Iterable<PromotionItem> aux = new ArrayList<PromotionItem>();
 		try {
-			
 			this.manager.getTransaction().begin();
 			aux = this.manager.createQuery("FROM PromotionItem pi WHERE pi.promotionId = " + id.toString()).getResultList();
 			this.manager.getTransaction().commit();
 			return aux;
-			
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener Items de la Promocion id = " + id.toString());
 			return null;	
 		}

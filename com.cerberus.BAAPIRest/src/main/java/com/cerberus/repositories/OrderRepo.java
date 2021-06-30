@@ -27,18 +27,16 @@ public class OrderRepo implements IOrderRepo{
     @SuppressWarnings("unchecked")
     @Override
     public Iterable<Order> GetOrders() {
-
         this.log.Write(LoggerType.LOG_START, "GetOrders");
         Iterable<Order> aux = new ArrayList<Order>();
         try {
-
             this.manager.getTransaction().begin();
             aux = this.manager.createQuery("FROM Order").getResultList();
             this.manager.getTransaction().commit();
             return aux;
 
         } catch (Exception e) {
-
+            e.printStackTrace();
             this.log.Write(LoggerType.LOG_ERROR, "Error al obtener lista de Ordenes");
             this.manager.getTransaction().rollback();
             return null;
@@ -46,23 +44,19 @@ public class OrderRepo implements IOrderRepo{
         finally {
             this.log.Write(LoggerType.LOG_END, "GetOrders");
         }
-
     }
 
     @Override
     public Order GetOrderById(Integer id) {
-
         this.log.Write(LoggerType.LOG_START, "GetUserById = " + id.toString());
         Order aux = new Order();
         try {
-
             this.manager.getTransaction().begin();
             aux = (Order) this.manager.createQuery("FROM Order o WHERE o.orderId = " + id.toString()).getSingleResult();
             this.manager.getTransaction().commit();
             return aux;
-
         } catch (Exception e) {
-
+            e.printStackTrace();
             this.log.Write(LoggerType.LOG_ERROR, "Error al obtener usuario id = " + id.toString());
             return null;
         }
@@ -73,20 +67,16 @@ public class OrderRepo implements IOrderRepo{
 
     @Override
     public Order CreateOrder(Order order) {
-
         this.manager.getTransaction().begin();
         this.manager.persist(order);
         this.manager.flush();
         this.manager.getTransaction().commit();
-
         return order;
     }
 
     @Override
     public Order UpdateOrder(Order order, Integer id) {
-
         Order orderToUpdate = this.GetOrderById(id);
-
         this.manager.getTransaction().begin();
         orderToUpdate.setOrderId(order.getOrderId());
         orderToUpdate.setPartialPayment(order.getPartialPayment());
@@ -99,16 +89,13 @@ public class OrderRepo implements IOrderRepo{
         order.setClientId(order.getClientId());
         order.setTableId(order.getTableId());
         order.setWaiterId(order.getWaiterId());
-
         this.manager.flush();
         this.manager.getTransaction().commit();
-
         return orderToUpdate;
     }
 
     @Override
     public void DeleteOrder(Integer id) {
-
         this.manager.getTransaction().begin();
         Query query = this.manager.createQuery("delete from Order WHERE id = " + id.toString());
         query.executeUpdate();

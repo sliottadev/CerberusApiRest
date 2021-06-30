@@ -37,9 +37,8 @@ public class MesaRepo implements IMesaRepo {
 			aux = this.manager.createQuery("FROM Mesa").getResultList();
 			this.manager.getTransaction().commit();
 			return aux;
-			
 		} catch(Exception e) {
-			
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener lista de Mesas");
 			this.manager.getTransaction().rollback();
 			return null;
@@ -51,18 +50,15 @@ public class MesaRepo implements IMesaRepo {
 
 	@Override
 	public Mesa GetMesaById(Integer id) {
-		
 		this.log.Write(LoggerType.LOG_START, "GetMesaById");
 		Mesa aux = new Mesa();
-		
 		try {
 			this.manager.getTransaction().begin();
 			aux = (Mesa) this.manager.createQuery("FROM Mesa m WHERE m.tableId = "+ id.toString()).getSingleResult();
 			this.manager.getTransaction().commit();
 			return aux;
-			
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al obetener Mesa por id");
 			this.manager.getTransaction().rollback();
 			return null;
@@ -76,14 +72,13 @@ public class MesaRepo implements IMesaRepo {
 	public Mesa CreateMesa(Mesa mesa) {
 		this.log.Write(LoggerType.LOG_START, "MesaRegister");
 		try {
-			
 			this.manager.getTransaction().begin();
 			this.manager.persist(mesa);
 			this.manager.flush();
 			this.manager.getTransaction().commit();
-			
 			return mesa;
 		}catch(Exception e) {
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al crear Mesa");
 			this.manager.getTransaction().rollback();
 			return null;
@@ -95,12 +90,9 @@ public class MesaRepo implements IMesaRepo {
 
 	@Override
 	public Mesa UpdateMesa(Mesa mesa, Integer id) {
-
 		Mesa mesaToUpdate = this.GetMesaById(id);
 		this.log.Write(LoggerType.LOG_START, "UpdateMesa");
-		
 		try {
-			
 			this.manager.getTransaction().begin();
 			mesaToUpdate.setCode(mesa.getCode());
 			mesaToUpdate.setLocation(mesa.getLocation());
@@ -109,10 +101,9 @@ public class MesaRepo implements IMesaRepo {
 			mesaToUpdate.setDeleted(mesa.getDeleted());
 			this.manager.flush();
 			this.manager.getTransaction().commit();
-			
 			return mesaToUpdate;
-			
 		}catch(Exception e) {
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al actualizar Mesa");
 			this.manager.getTransaction().rollback();
 			return null;
@@ -125,9 +116,7 @@ public class MesaRepo implements IMesaRepo {
 	@Override
 	public Mesa DeleteMesa(Integer id) {
 		this.log.Write(LoggerType.LOG_START, "DeleteMesa");
-		
 		try {
-			
 			Mesa mesa = this.GetMesaById(id);
 			this.manager.getTransaction().begin();
 			Query query = this.manager.createQuery("DELETE FROM Mesa WHERE id = "+id.toString());
@@ -135,7 +124,7 @@ public class MesaRepo implements IMesaRepo {
 			this.manager.getTransaction().commit();
 			return mesa;
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al eliminar el Mesa");
 			this.manager.getTransaction().rollback();
 			return null;
