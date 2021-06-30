@@ -32,7 +32,6 @@ public class ClientRepo implements IClientRepo{
 	@SuppressWarnings("unchecked")
 	@Override
 	public Iterable<Client> GetClients() {
-		
 		this.log.Write(LoggerType.LOG_START, "GetClients");
 		Iterable<Client> aux = new ArrayList<Client>();
 		try {
@@ -42,7 +41,7 @@ public class ClientRepo implements IClientRepo{
 			return aux;
 			
 		}catch(Exception e){
-			
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener la lista de Clientes");
 			this.manager.getTransaction().rollback();
 			return null;
@@ -55,18 +54,15 @@ public class ClientRepo implements IClientRepo{
 
 	@Override
 	public Client GetClientById(Integer id) {
-
 		this.log.Write(LoggerType.LOG_START, "GetClientById = " + id.toString());
 		Client aux = new Client();
 		try {
-
 			this.manager.getTransaction().begin();
 			aux = (Client) this.manager.createQuery("FROM Client c WHERE c.clientId = " + id.toString()).getSingleResult();
 			this.manager.getTransaction().commit();
 			return aux;
-
 		} catch (Exception e) {
-
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener cliente id = " + id.toString());
 			return null;
 		}
@@ -77,12 +73,10 @@ public class ClientRepo implements IClientRepo{
 
 	@Override
 	public Client CreateClient(Client client) {
-
 		this.manager.getTransaction().begin();
 		this.manager.persist(client);
 		this.manager.flush();
 		this.manager.getTransaction().commit();
-
 		return client;
 	}
 
@@ -90,9 +84,7 @@ public class ClientRepo implements IClientRepo{
 	public Client UpdateClient(Client client, Integer id) {
 		this.log.Write(LoggerType.LOG_START, "UpdateClient");
 		Client clientToUpdate = new Client();
-		
 		try {
-			
 			this.manager.getTransaction().begin();
 			clientToUpdate = (Client) this.manager.createQuery("FROM Client c WHERE c.clientId = "+id.toString()).getSingleResult();
 			clientToUpdate.setUserName(client.getUserName());
@@ -107,17 +99,14 @@ public class ClientRepo implements IClientRepo{
 			clientToUpdate.setImage(client.getImage());
 			this.manager.flush();
 			this.manager.getTransaction().commit();
-			
 			return clientToUpdate;
-			
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al actualizar Cliente");
 			this.manager.getTransaction().rollback();
 			return null;
 		}
 		finally {
-			
 			this.log.Write(LoggerType.LOG_END, "UpdateClient");
 		}
 		
@@ -125,21 +114,17 @@ public class ClientRepo implements IClientRepo{
 
 	@Override
 	public void DeleteClient(Integer id) {
-		
 		try {
-			
 			this.log.Write(LoggerType.LOG_START, "DeleteClient");
 			this.manager.getTransaction().begin();
 			Query query = this.manager.createQuery("DELETE FROM Client WHERE id = "+ id.toString());
 			query.executeUpdate();
 			this.manager.getTransaction().commit();
-			
 		} catch(Exception e) {
-			
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al eliminar Cliente");			
 		}
 		finally {
-			
 			this.log.Write(LoggerType.LOG_END, "DeleteClient");
 		}
 		
@@ -156,6 +141,7 @@ public class ClientRepo implements IClientRepo{
 			this.manager.getTransaction().commit();
 			return aux;
 		}catch(Exception e) {
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al logear Cliente");
 			this.manager.getTransaction().rollback();
 			return null;
@@ -175,6 +161,7 @@ public class ClientRepo implements IClientRepo{
 			this.manager.getTransaction().commit();
 			return client;
 		}catch(Exception e) {
+			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al registrar Cliente");
 			this.manager.getTransaction().rollback();
 			return null;
