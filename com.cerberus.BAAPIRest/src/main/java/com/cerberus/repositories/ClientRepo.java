@@ -9,7 +9,9 @@ import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.cerberus.DTOs.userLoginDTO;
 import com.cerberus.enums.LoggerType;
 import com.cerberus.helpers.Logger;
 import com.cerberus.models.Client;
@@ -52,22 +54,24 @@ public class ClientRepo implements IClientRepo{
 	}
 
 	@Override
-	public Client ClientLogin(Client client) {
+	public Boolean ClientLogin( userLoginDTO userLogin) {
 		this.log.Write(LoggerType.LOG_START, "ClientLogin");
 		Client aux = new Client();
 		try {
 			this.manager.getTransaction().begin();		
-			aux = (Client) this.manager.createQuery("FROM Client c WHERE c.pass = "+ client.getPass()+" AND (c.userName = '"+ client.getUserName()+"' OR c.mail = '"+ client.getMail()+"')").getSingleResult();        
+			aux = (Client) this.manager.createQuery("FROM Client c WHERE c.pass = "+ userLogin.getPass() +" AND (c.userName = '"+ userLogin.getNameOrMail() +"' OR c.mail = '"+ userLogin.getNameOrMail() +"')").getSingleResult();        
 			this.manager.getTransaction().commit();
-			return aux;
+			
+			return (aux.getUserName().equals(userLogin.getNameOrMail()) || aux.getMail().equals(userLogin.getNameOrMail())) ;
 		}catch(Exception e) {
 			this.log.Write(LoggerType.LOG_ERROR, "Error al logear Cliente");
 			this.manager.getTransaction().rollback();
-			return null;
+			return false;
 		}
 		finally {
 			this.log.Write(LoggerType.LOG_END, "ClientLogin");
 		}
+		
 	}
 
 	@Override
@@ -144,6 +148,33 @@ public class ClientRepo implements IClientRepo{
 		finally {
 			
 			this.log.Write(LoggerType.LOG_END, "DeleteClient");
+		}
+		
+	}
+
+	@CrossOrigin
+	@Override
+	public Integer getClientIdByNameOrMail(String value) {
+
+		this.log.Write(LoggerType.LOG_START, "getClientIdByNameOrMail: " + value);
+		Client aux = new Client();
+		try {
+			this.manager.getTransaction().begin();		
+			aux = (Client) this.manager.createQuery("FROM Client c WHERE c.userName = '"+ value +"' OR c.mail = '"+ value +"'").getSingleResult();        
+			this.manager.getTransaction().commit();
+			
+			if ( aux.getUserName().equals(value) || aux.getMail().equals(value) ) {
+				return aux.getClientId();
+			} else {
+				return -1;
+			}
+		}catch(Exception e) {
+			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener Cliente");
+			this.manager.getTransaction().rollback();
+			return -1;
+		}
+		finally {
+			this.log.Write(LoggerType.LOG_END, "getClientIdByNameOrMail");
 		}
 		
 	}

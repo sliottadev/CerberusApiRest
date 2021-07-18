@@ -1,13 +1,14 @@
 package com.cerberus.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cerberus.helpers.Logger;
@@ -19,6 +20,7 @@ import com.cerberus.services.IClientService;
  * Controla: clientes, login de clientes, detalle de clientes
  * Entidades relacionadas: Client, ClientDetails
  */
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/clients")
 public class ClientController {
@@ -33,7 +35,17 @@ public class ClientController {
 	public Iterable<Client> GetClients(){
 		return clientService.GetClients();
 	}
+<<<<<<< Updated upstream
 	
+=======
+
+	@GetMapping("/getClientIdByNameOrMail")
+	public Integer getClientbyNameOrMail(@RequestParam String value) {
+		return clientService.getClientIdByNameOrMail(value);
+	}
+	
+	/*
+>>>>>>> Stashed changes
 	@PostMapping 
 	public Client ClientLogin(@RequestBody Client client) {
 		return clientService.ClientLogin(client);
@@ -53,6 +65,7 @@ public class ClientController {
 	public void DeleteClient(@PathVariable Integer id) {
 		clientService.DeleteClient(id);
 	}
+	
 	
 	
 }

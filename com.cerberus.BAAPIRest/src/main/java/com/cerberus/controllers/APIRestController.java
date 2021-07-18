@@ -1,20 +1,11 @@
 package com.cerberus.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cerberus.enums.LoggerType;
-import com.cerberus.helpers.GenericMapper;
 import com.cerberus.helpers.Logger;
-import com.cerberus.models.Product;
-import com.cerberus.models.Rol;
-import com.cerberus.models.User;
 import com.cerberus.services.IProductService;
 import com.cerberus.services.IUserService;
 
