@@ -35,9 +35,7 @@ public class ClientController {
 	public Iterable<Client> GetClients(){
 		return clientService.GetClients();
 	}
-<<<<<<< Updated upstream
-	
-=======
+
 
 	@GetMapping("/getClientIdByNameOrMail")
 	public Integer getClientbyNameOrMail(@RequestParam String value) {
@@ -45,7 +43,6 @@ public class ClientController {
 	}
 	
 	/*
->>>>>>> Stashed changes
 	@PostMapping 
 	public Client ClientLogin(@RequestBody Client client) {
 		return clientService.ClientLogin(client);
@@ -65,7 +62,7 @@ public class ClientController {
 	public void DeleteClient(@PathVariable Integer id) {
 		clientService.DeleteClient(id);
 	}
-	
+	*/
 	
 	
 }
