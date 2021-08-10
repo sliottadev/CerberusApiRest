@@ -1,16 +1,25 @@
 package com.cerberus.controllers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cerberus.DTOs.ProductDTO;
 import com.cerberus.helpers.Logger;
 import com.cerberus.services.IProductService;
 import com.cerberus.services.IUserService;
 
 @RestController
-@RequestMapping("/")
+//@RequestMapping("/")
 public class APIRestController {
 
 	@Autowired
@@ -23,11 +32,31 @@ public class APIRestController {
 	@Autowired
 	Logger log;
 
-	@GetMapping("test")
+	@GetMapping("/test")
 	public String HelloTest() {
 		return "Hello World!!!";
 	}
+	
+	@PostMapping("Test")
+	public String TestPasaje(@RequestBody Map<String, Object> datos) {
+//	public String TestPasaje(@RequestBody List<ProductDTO> datos) {
+		
+		return null;		
+	}
 
+	@GetMapping("Test")
+	public Map<String, Object> TestPasajeGet() {
+//	public String TestPasaje(@RequestBody List<ProductDTO> datos) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		List<ProductDTO> lista = new ArrayList<ProductDTO>();
+		lista.add(new ProductDTO(1001,5));
+		lista.add(new ProductDTO(1002,5));
+		lista.add(new ProductDTO(1004,5));
+		result.put("Pija", "PijaResult");
+		result.put("Pija2", lista);
+		result.put("Pija3", "PijaResult3");
+		return result;		
+	}
 	/*
 	@GetMapping("GetRoles")
 	public String GetRoles() {

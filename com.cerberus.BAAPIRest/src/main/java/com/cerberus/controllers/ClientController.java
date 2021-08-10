@@ -22,7 +22,7 @@ import com.cerberus.services.IClientService;
  */
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/api/clients")
 public class ClientController {
 	
 	@Autowired

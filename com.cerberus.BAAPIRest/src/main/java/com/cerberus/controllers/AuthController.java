@@ -21,9 +21,8 @@ import java.util.stream.Collectors;
  */
 
 @RestController
-@RequestMapping("/auth")
-@CrossOrigin
-
+@RequestMapping("/api/auth")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthController {
     @Autowired
     private IClientService clientService;
