@@ -10,8 +10,8 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Target
-.com.cerberus.BAAPIRest/target/
+#Ignore Target
+*/target/*
 
 # Package Files #
 *.jar
@@ -24,3 +24,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+#Ignore persistence
+*/META-INF/*
