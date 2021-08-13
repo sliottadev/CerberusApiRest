@@ -1,5 +1,6 @@
 package com.cerberus.repositories;
 
+import com.cerberus.DTOs.userLoginDTO;
 import com.cerberus.models.Client;
 import com.cerberus.models.Client;
 
@@ -7,7 +8,8 @@ public interface IClientRepo {
 
 	public Iterable<Client> GetClients();
 
-	public Client GetClientById(Integer id);
+	//public Client ClientLogin(Client client);
+	public Boolean ClientLogin(userLoginDTO userLogin);
 
 	public Client CreateClient(Client client);
 
@@ -15,8 +17,6 @@ public interface IClientRepo {
 
 	public void DeleteClient(Integer id);
 
-	public Client ClientLogin(Client client);
-
-	public Client ClientRegister(Client client);
+	public Integer getClientIdByNameOrMail(String value);
 
 }

@@ -1,5 +1,6 @@
 package com.cerberus.services;
 
+import com.cerberus.DTOs.userLoginDTO;
 import com.cerberus.models.Client;
 import com.cerberus.models.Client;
 
@@ -7,7 +8,7 @@ public interface IClientService {
 
 	public Iterable<Client> GetClients();
 
-	public Client GetClientById(Integer id);
+	public Boolean ClientLogin(userLoginDTO userLogin);
 
 	public Client CreateClient (Client client);
 
@@ -15,8 +16,6 @@ public interface IClientService {
 
 	public void DeleteClient(Integer id);
 
-	public Client ClientLogin(Client client);
-
-	public Client ClientRegister(Client client);
+	public Integer getClientIdByNameOrMail(String value);
 
 }

@@ -17,7 +17,8 @@ import java.util.List;
  * Entidades relacionadas: Rol, User, Permission
  */
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
     @Autowired
     IUserService userService;
