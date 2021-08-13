@@ -19,4 +19,6 @@ public interface IClientRepo {
 
 	public Integer getClientIdByNameOrMail(String value);
 
+	public Client ClientRegister(Client client);
+
 }

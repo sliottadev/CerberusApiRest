@@ -33,10 +33,10 @@ public class ClientController {
 		return clientService.GetClients();
 	}
 
-	@GetMapping("/{id}")
-	public Client GetClientById(@PathVariable Integer id) {
-		return clientService.GetClientById(id);
-
+//	@GetMapping("/{id}")
+//	public Client GetClientById(@PathVariable Integer id) {
+//		return clientService.GetClientById(id);
+//	}
 
 	@GetMapping("/getClientIdByNameOrMail")
 	public Integer getClientbyNameOrMail(@RequestParam String value) {
@@ -63,6 +63,6 @@ public class ClientController {
 	public void DeleteClient(@PathVariable Integer id) {
 		clientService.DeleteClient(id);
 	}
-	
+	*/
 	
 }

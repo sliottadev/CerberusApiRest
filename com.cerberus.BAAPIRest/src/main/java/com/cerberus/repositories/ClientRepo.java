@@ -52,11 +52,29 @@ public class ClientRepo implements IClientRepo{
 			this.log.Write(LoggerType.LOG_END, "GetClients");
 		}
 	}
-
+	
+	@Override
+	public Client ClientRegister(Client client) {
+		this.log.Write(LoggerType.LOG_START, "ClientRegister");
+		try {
+			this.manager.getTransaction().begin();
+			this.manager.persist(client);
+			this.manager.flush();
+			this.manager.getTransaction().commit();
+			return client;
+		}catch(Exception e) {
+			this.log.Write(LoggerType.LOG_ERROR, "Error al registrar Cliente");
+			this.manager.getTransaction().rollback();
+			return null;
+		}
+		finally {
+			this.log.Write(LoggerType.LOG_END, "ClientRegister");
+		}
+	}
 
 	@Override
 	public Boolean ClientLogin( userLoginDTO userLogin) {
-		this.log.Write(LoggerType.LOG_START, "ClientLogin");
+		this.log.Write(LoggerType.LOG_START, "ClientLogin GetClient = " + userLogin.getNameOrMail());
 		Client aux = new Client();
 		try {
 			this.manager.getTransaction().begin();		
@@ -65,12 +83,9 @@ public class ClientRepo implements IClientRepo{
 			
 			return (aux.getUserName().equals(userLogin.getNameOrMail()) || aux.getMail().equals(userLogin.getNameOrMail())) ;
 		}catch(Exception e) {
-			this.log.Write(LoggerType.LOG_ERROR, "Error al logear Cliente");
+			this.log.Write(LoggerType.LOG_ERROR, "Error al logear Cliente: " + userLogin.getNameOrMail());
 			this.manager.getTransaction().rollback();
 			return false;
-		}
-		finally {
-			this.log.Write(LoggerType.LOG_END, "GetClientById = " + id.toString());
 		}
 		
 	}
