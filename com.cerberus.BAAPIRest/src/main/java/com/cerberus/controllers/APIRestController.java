@@ -34,7 +34,7 @@ public class APIRestController {
 
 	@GetMapping("/test")
 	public String HelloTest() {
-		return "Hello World!!!";
+		return "Hello World!!! SSH";
 	}
 	
 	@PostMapping("Test")
