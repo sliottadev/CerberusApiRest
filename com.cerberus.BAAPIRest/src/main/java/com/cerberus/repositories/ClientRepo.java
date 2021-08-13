@@ -10,7 +10,9 @@ import javax.persistence.Query;
 import com.cerberus.models.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.cerberus.DTOs.userLoginDTO;
 import com.cerberus.enums.LoggerType;
 import com.cerberus.helpers.Logger;
 import com.cerberus.models.Client;
@@ -53,22 +55,24 @@ public class ClientRepo implements IClientRepo{
 
 
 	@Override
-	public Client GetClientById(Integer id) {
-		this.log.Write(LoggerType.LOG_START, "GetClientById = " + id.toString());
+	public Boolean ClientLogin( userLoginDTO userLogin) {
+		this.log.Write(LoggerType.LOG_START, "ClientLogin");
 		Client aux = new Client();
 		try {
-			this.manager.getTransaction().begin();
-			aux = (Client) this.manager.createQuery("FROM Client c WHERE c.clientId = " + id.toString()).getSingleResult();
+			this.manager.getTransaction().begin();		
+			aux = (Client) this.manager.createQuery("FROM Client c WHERE c.pass = "+ userLogin.getPass() +" AND (c.userName = '"+ userLogin.getNameOrMail() +"' OR c.mail = '"+ userLogin.getNameOrMail() +"')").getSingleResult();        
 			this.manager.getTransaction().commit();
-			return aux;
-		} catch (Exception e) {
-			e.printStackTrace();
-			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener cliente id = " + id.toString());
-			return null;
+			
+			return (aux.getUserName().equals(userLogin.getNameOrMail()) || aux.getMail().equals(userLogin.getNameOrMail())) ;
+		}catch(Exception e) {
+			this.log.Write(LoggerType.LOG_ERROR, "Error al logear Cliente");
+			this.manager.getTransaction().rollback();
+			return false;
 		}
 		finally {
 			this.log.Write(LoggerType.LOG_END, "GetClientById = " + id.toString());
 		}
+		
 	}
 
 	@Override
@@ -130,45 +134,31 @@ public class ClientRepo implements IClientRepo{
 		
 	}
 
-
+	@CrossOrigin
 	@Override
-	public Client ClientLogin(Client client) {
-		this.log.Write(LoggerType.LOG_START, "ClientLogin");
+	public Integer getClientIdByNameOrMail(String value) {
+
+		this.log.Write(LoggerType.LOG_START, "getClientIdByNameOrMail: " + value);
 		Client aux = new Client();
 		try {
-			this.manager.getTransaction().begin();
-			aux = (Client) this.manager.createQuery("FROM Client c WHERE c.pass = "+ client.getPass()+" AND (c.userName = '"+ client.getUserName()+"' OR c.mail = '"+ client.getMail()+"')").getSingleResult();
+			this.manager.getTransaction().begin();		
+			aux = (Client) this.manager.createQuery("FROM Client c WHERE c.userName = '"+ value +"' OR c.mail = '"+ value +"'").getSingleResult();        
 			this.manager.getTransaction().commit();
-			return aux;
+			
+			if ( aux.getUserName().equals(value) || aux.getMail().equals(value) ) {
+				return aux.getClientId();
+			} else {
+				return -1;
+			}
 		}catch(Exception e) {
-			e.printStackTrace();
-			this.log.Write(LoggerType.LOG_ERROR, "Error al logear Cliente");
+			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener Cliente");
 			this.manager.getTransaction().rollback();
-			return null;
+			return -1;
 		}
 		finally {
-			this.log.Write(LoggerType.LOG_END, "ClientLogin");
+			this.log.Write(LoggerType.LOG_END, "getClientIdByNameOrMail");
 		}
-	}
-
-	@Override
-	public Client ClientRegister(Client client) {
-		this.log.Write(LoggerType.LOG_START, "ClientRegister");
-		try {
-			this.manager.getTransaction().begin();
-			this.manager.persist(client);
-			this.manager.flush();
-			this.manager.getTransaction().commit();
-			return client;
-		}catch(Exception e) {
-			e.printStackTrace();
-			this.log.Write(LoggerType.LOG_ERROR, "Error al registrar Cliente");
-			this.manager.getTransaction().rollback();
-			return null;
-		}
-		finally {
-			this.log.Write(LoggerType.LOG_END, "ClientRegister");
-		}
+		
 	}
 
 }

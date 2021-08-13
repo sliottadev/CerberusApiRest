@@ -1,6 +1,7 @@
 package com.cerberus.repositories;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,7 +24,7 @@ public class ProductRepo implements IProductRepo {
 	
 	public ProductRepo() {
 		this.emf = Persistence.createEntityManagerFactory("Persistencia");
-		this.manager = emf.createEntityManager();
+		this.manager = emf.createEntityManager();			
 		this.log = new Logger();
 	}	
 
@@ -32,18 +33,22 @@ public class ProductRepo implements IProductRepo {
 	public Iterable<Product> GetProducts() {
 		this.log.Write(LoggerType.LOG_START, "GetProducts");
 		Iterable<Product> aux = new ArrayList<Product>();
+		
 		try {
+//			this.manager = emf.createEntityManager();			
 			this.manager.getTransaction().begin();
 			aux = this.manager.createQuery("FROM Product").getResultList();
 			this.manager.getTransaction().commit();
 			return aux;
 		} catch (Exception e) {
-			e.printStackTrace();
+			this.log.Write(LoggerType.LOG_ERROR, e.getMessage());
 			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener lista de Productos");
+			this.manager.getTransaction().rollback();
 			return null;	
 		}
 		finally {
 			this.log.Write(LoggerType.LOG_END, "GetProducts");
+//			this.manager.close();
 		}
 	}
 
@@ -140,8 +145,9 @@ public class ProductRepo implements IProductRepo {
 	@Override
 	public Iterable<Category> GetCategories() {
 		this.log.Write(LoggerType.LOG_START, "GetCategories");
-		Iterable<Category> aux = new ArrayList<Category>();
+		List<Category> aux = null;
 		try {
+//			this.manager = emf.createEntityManager();
 			this.manager.getTransaction().begin();
 			aux = this.manager.createQuery("FROM Category").getResultList();
 			this.manager.getTransaction().commit();
@@ -150,11 +156,12 @@ public class ProductRepo implements IProductRepo {
 			e.printStackTrace();
 			this.log.Write(LoggerType.LOG_ERROR, "Error al obtener lista de Categorias");
 			this.manager.getTransaction().rollback();
-			return null;
 		}
 		finally {
 			this.log.Write(LoggerType.LOG_END, "GetCategories");
+//			this.manager.close();
 		}
+		return null;
 	}
 
 	@SuppressWarnings("unchecked")

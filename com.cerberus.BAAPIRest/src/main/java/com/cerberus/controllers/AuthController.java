@@ -1,5 +1,6 @@
 package com.cerberus.controllers;
 
+import com.cerberus.DTOs.userLoginDTO;
 import com.cerberus.models.Client;
 import com.cerberus.services.IClientService;
 import io.jsonwebtoken.Jwts;
@@ -15,11 +16,13 @@ import java.util.stream.Collectors;
 
 /**
  * ClientsController Path: "../auth/"
- * Controla: paths que no necesiten autenticación
+ * Controla: paths que no necesiten autenticacion
  * Entidades relacionadas: Client
  */
+
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthController {
     @Autowired
     private IClientService clientService;
@@ -29,9 +32,14 @@ public class AuthController {
         return "Hello Auth";
     }
 
+    
     @PostMapping
-    public Client ClientLogin(@RequestBody Client client) {
-        return clientService.ClientLogin(client);
+    public String ClientLogin(@RequestBody userLoginDTO userlogin) {
+        if (clientService.ClientLogin(userlogin)) {
+        	return getJWTToken(userlogin.getNameOrMail());
+        } else {
+        	return null;
+        }
     }
 
     @PostMapping("/register")

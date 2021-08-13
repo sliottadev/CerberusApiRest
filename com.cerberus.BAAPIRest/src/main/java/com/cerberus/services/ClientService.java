@@ -4,6 +4,7 @@ import com.cerberus.models.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cerberus.DTOs.userLoginDTO;
 import com.cerberus.models.Client;
 import com.cerberus.repositories.IClientRepo;
 
@@ -30,8 +31,8 @@ public class ClientService implements IClientService{
 	 * @return user existente
 	 */
 	@Override
-	public Client GetClientById(Integer id) {
-		return clientRepo.GetClientById(id);
+	public Boolean ClientLogin(userLoginDTO userLogin ) {
+		return clientRepo.ClientLogin(userLogin);
 	}
 
 	/**
@@ -67,13 +68,8 @@ public class ClientService implements IClientService{
 	}
 
 	@Override
-	public Client ClientLogin(Client client) {
-		return clientRepo.ClientLogin(client);
-	}
-
-	@Override
-	public Client ClientRegister(Client client) {
-		return clientRepo.ClientRegister(client);
+	public Integer getClientIdByNameOrMail(String value) {
+		return clientRepo.getClientIdByNameOrMail(value);
 	}
 
 }
