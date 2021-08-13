@@ -71,5 +71,10 @@ public class ClientService implements IClientService{
 	public Integer getClientIdByNameOrMail(String value) {
 		return clientRepo.getClientIdByNameOrMail(value);
 	}
+	
+	@Override
+	public Client ClientRegister(Client client) {
+		return clientRepo.ClientRegister(client);
+	}
 
 }

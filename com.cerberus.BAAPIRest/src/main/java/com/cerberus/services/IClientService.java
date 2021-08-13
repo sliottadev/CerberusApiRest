@@ -18,4 +18,6 @@ public interface IClientService {
 
 	public Integer getClientIdByNameOrMail(String value);
 
+	public Client ClientRegister(Client client);
+
 }
