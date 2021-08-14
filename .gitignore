@@ -11,7 +11,6 @@
 .mtj.tmp/
 
 #Ignore Target
-*/target/*
 
 # Package Files #
 *.jar
@@ -27,3 +26,15 @@ hs_err_pid*
 
 #Ignore persistence
 */META-INF/*
+
+*/com.cerberus.BAAPIRest/target/**
+
+com.cerberus.BAAPIRest/target/*
+
+com.cerberus.BAAPIRest/.classpath
+com.cerberus.BAAPIRest/.gitignoreppp
+com.cerberus.BAAPIRest/.project
+com.cerberus.BAAPIRest/.settings/
+
+com.cerberus.BAAPIRest/target/classes/META-INF/MANIFEST.MF
+
