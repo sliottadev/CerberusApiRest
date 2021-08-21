@@ -1,8 +1,11 @@
 package com.cerberus.controllers;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.cerberus.models.Image;
+import com.cerberus.models.Order;
+import com.cerberus.services.IImageService;
+import com.cerberus.services.IOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * ImageController path: "../res/"
@@ -13,4 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/res")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ImageController {
+    @Autowired
+    IImageService imageService;
+
+    @PostMapping
+    public Image CreateImage(@RequestBody Image image) {
+        return imageService.CreateImage(image);
+    }
 }

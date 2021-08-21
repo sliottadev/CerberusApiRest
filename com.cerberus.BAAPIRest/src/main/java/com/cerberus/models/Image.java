@@ -19,67 +19,63 @@ public class Image implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-	@Column(name = "ImageId" )	
-	private Integer ImageId;
+	@Column(name = "ImageId" )
+	private Integer imageId;
 	
-	@Column(name = "Description" )	
-	private String Description;
+	@Column(name = "Description" )
+	private String description;
 	
-	@Column(name = "FileName" )	
-	private String FileName;
+	@Column(name = "FileName" )
+	private String fileName;
 	
-	@Column(name = "Data" )	
-	private Byte[] Data;
+	@Column(name = "Data" )
+	private byte[] data;
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-		
 	public Integer getImageId() {
-		return ImageId;
+		return imageId;
 	}
 
 	public void setImageId(Integer imageId) {
-		ImageId = imageId;
+		this.imageId = imageId;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	public String getFileName() {
-		return FileName;
+		return fileName;
 	}
 
 	public void setFileName(String fileName) {
-		FileName = fileName;
+		this.fileName = fileName;
 	}
 
-	public Byte[] getData() {
-		return Data;
+	public byte[] getData() {
+		return data;
 	}
 
-	public void setData(Byte[] data) {
-		Data = data;
+	public void setData(byte[] data) {
+		this.data = data;
 	}
 
 	public Image() {
 	}
 
-	public Image(Integer imageId, String description, String fileName, Byte[] data) {
-		ImageId = imageId;
-		Description = description;
-		FileName = fileName;
-		Data = data;
+	public Image(Integer imageId, String description, String fileName, byte[] data) {
+		this.imageId = imageId;
+		this.description = description;
+		this.fileName = fileName;
+		this.data = data;
 	}
 
 	@Override
 	public String toString() {
-		return "Image [ImageId=" + ImageId + ", Description=" + Description + ", FileName=" + FileName + "]";
+		return "Image [imageId=" + imageId + ", description=" + description + ", fileName=" + fileName + "]";
 	}
 	
 	
