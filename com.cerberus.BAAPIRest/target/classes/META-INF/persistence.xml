@@ -5,20 +5,19 @@
              http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 
-  <persistence-unit name="Persistencia">
-  	
-  	<class>com.cerberus.models.Roles</class>
+    <persistence-unit name="Persistencia">
 
-    <properties>
-        <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+        <class>com.cerberus.models.Roles</class>
 
-		<property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://DESKTOP-JJPVNUN;databaseName=CerberusDB;integratedSecurity=true" />
-        <!-- <property name="javax.persistence.jdbc.user" value="logintest2" />
-        <property name="javax.persistence.jdbc.password" value="logintest2" /> -->
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://DESKTOP-QJ890GI\SQLEXPRESS;databaseName=CerberusDB;integratedSecurity=false" />
+            <property name="javax.persistence.jdbc.user" value="logintest2" />
+            <property name="javax.persistence.jdbc.password" value="logintest2" />
 
-        <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
-        <property name="hibernate.hbm2ddl.auto" value="update" />
-    </properties>
-  </persistence-unit>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+        </properties>
+    </persistence-unit>
 
 </persistence>
